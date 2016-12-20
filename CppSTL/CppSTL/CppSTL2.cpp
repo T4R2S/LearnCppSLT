@@ -1,32 +1,53 @@
 #include "stdafx.h"
 using namespace std;
 
-class smallobj
+class Counter
 {
 private:			//создали поле с закрытой областью видимости
-	int somedata;
+
+	unsigned int count;
+
 public:				//создали поля и методы с открытой областью видимости
 
-	void setdata(int d)
+	Counter() : count(10){}
+
+	Counter(int chislo) : count(chislo)
 	{
-		somedata = d;
+		cout << "Использовался конструктор с параметром" << endl;
 	}
 
-	void showdata()
+	~Counter() //деструктор по умолчанию
 	{
-		cout << "Значение поля равно " << somedata << endl;
+		cout << "Объект уничтожен" << endl;
+	}
+
+	void inc_count()
+	{
+		count++;
+	}
+
+	int get_count()
+	{
+		return count;
 	}
 };
 
 int main()
 {
 	setlocale(LC_ALL, "rus"); //не обязательно
-	smallobj s1, s2;
-	s1.setdata(1066);
-	s2.setdata(23123);
-	s1.showdata();
-	s2.showdata();
+	Counter c1;
+	Counter c;
+	Counter c2(10000021);
+	cout << "\nc1=" << c1.get_count();
+	cout << "\nc2=" << c2.get_count();
+	c1.inc_count();
+	c2.inc_count();
+	c2.inc_count();
+	cout << "\nc1=" << c1.get_count();
+	cout << "\nc2=" << c2.get_count();
+	cout << endl;
+	c1.~Counter();  //вызываем деструктор по умолчанию
+	c2.~Counter();
 	system("pause");
-
 	return 0;
 }
