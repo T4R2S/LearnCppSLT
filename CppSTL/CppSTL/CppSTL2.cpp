@@ -21,16 +21,19 @@ public:				//создали поля и методы с открытой областью видимости
 		cout << "Объект уничтожен" << endl;
 	}
 
-	void inc_count()
-	{
-		count++;
-	}
-
-	int get_count()
-	{
-		return count;
-	}
+	void inc_count(); //прототип метода
+	int get_count();
 };
+
+void Counter::inc_count()
+{
+	count++;
+}
+
+int Counter::get_count()
+{
+	return count;
+}
 
 int main()
 {
